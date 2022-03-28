@@ -14,6 +14,41 @@ import com.indracompany.treinamento.util.CpfUtil;
 
 @Service
 public class ClienteService extends GenericCrudService<Cliente, Long, ClienteRepository>{
+	
+	@Override
+	public Cliente salvar(Cliente cliente) throws AplicacaoException{
+		
+		Cliente c = buscarCliente(cliente.getCpf());
+		
+		if(c != null) {
+			if(cliente.getId() == null) {
+				throw new AplicacaoException(ExceptionValidacoes.ERRO_CPF_JA_CADASTRADO);
+		}
+		
+			if(!cliente.getId().equals(cliente.getId())) {
+				throw new AplicacaoException(ExceptionValidacoes.ERRO_CPF_JA_CADASTRADO);
+			}
+		}
+		
+		return super.salvar(cliente);
+	}
+	
+	public Cliente buscarCliente(String cpf) {
+		
+		boolean cpfValido = cpf != null && CpfUtil.validaCPF(cpf);
+		
+		if(!cpfValido) {
+			throw new AplicacaoException(ExceptionValidacoes.ERRO_CPF_INVALIDO);
+		}
+		
+		Cliente cliente = repository.findByCpf(cpf);
+		
+		if(cliente == null) {
+			throw new AplicacaoException(ExceptionValidacoes.ALERTA_NENHUM_REGISTRO_ENCONTRADO);
+		}
+		
+		return cliente;
+	}
 
 	public ClienteDTO buscarClientePorCpf(String cpf) {
 		
@@ -36,30 +71,25 @@ public class ClienteService extends GenericCrudService<Cliente, Long, ClienteRep
 		return retorno;
 	}
 	
-	public List<ClienteDTO> buscarClientePorCpfLista(String cpf) {
-		
-		boolean cpfValido = cpf != null && CpfUtil.validaCPF(cpf);
-		
-		if(!cpfValido) {
-			throw new AplicacaoException(ExceptionValidacoes.ERRO_CPF_INVALIDO);
-		}
-		
-		List<Cliente> clientes = repository.findByCpf(cpf);
-		
-		if(clientes == null || clientes.isEmpty()) {
-			throw new AplicacaoException(ExceptionValidacoes.ALERTA_NENHUM_REGISTRO_ENCONTRADO);
-		}
-		
-		List<ClienteDTO> retorno = new ArrayList<ClienteDTO>();
-		for(Cliente c: clientes) {
-			ClienteDTO dto = new ClienteDTO();
-			dto.setEmail(c.getEmail());
-			dto.setNome(c.getNome());
-			retorno.add(dto);
-		}
-		
-		return retorno;
-	}
+	/*
+	 * public List<ClienteDTO> buscarClientePorCpfLista(String cpf) {
+	 * 
+	 * boolean cpfValido = cpf != null && CpfUtil.validaCPF(cpf);
+	 * 
+	 * if(!cpfValido) { throw new
+	 * AplicacaoException(ExceptionValidacoes.ERRO_CPF_INVALIDO); }
+	 * 
+	 * List<Cliente> clientes = repository.findByCpf(cpf);
+	 * 
+	 * if(clientes == null || clientes.isEmpty()) { throw new
+	 * AplicacaoException(ExceptionValidacoes.ALERTA_NENHUM_REGISTRO_ENCONTRADO); }
+	 * 
+	 * List<ClienteDTO> retorno = new ArrayList<ClienteDTO>(); for(Cliente c:
+	 * clientes) { ClienteDTO dto = new ClienteDTO(); dto.setEmail(c.getEmail());
+	 * dto.setNome(c.getNome()); retorno.add(dto); }
+	 * 
+	 * return retorno; }
+	 */
 	
 	public List<ClienteDTO> buscarClientePorNome(String nome){
 		
@@ -69,7 +99,7 @@ public class ClienteService extends GenericCrudService<Cliente, Long, ClienteRep
 			throw new AplicacaoException(ExceptionValidacoes.ERRO_OBJETO_NAO_ENCONTRADO);
 		}
 		
-		List<Cliente> clientes = repository.findByNomeContaining(nome);
+		List<Cliente> clientes = repository.findByNomeStartingWith(nome);
 		
 		if(clientes == null || clientes.isEmpty()) {
 			throw new AplicacaoException(ExceptionValidacoes.ALERTA_NENHUM_REGISTRO_ENCONTRADO);
@@ -82,6 +112,8 @@ public class ClienteService extends GenericCrudService<Cliente, Long, ClienteRep
 			dto.setEmail(c.getEmail());
 			retorno.add(dto);
 		}
+		
+		//BeanUtils.copyProperties(c, dto); conversão de dtos com BeanUtils
 		
 		return retorno;
 		

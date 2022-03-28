@@ -8,9 +8,12 @@ public interface ClienteRepository extends GenericCrudRepository<Cliente, Long>{
 	
 	Cliente findTopByCpfOrderByIdDesc(String cpf);
 	
-	List<Cliente> findByCpf(String cpf);
+	Cliente findByCpf(String cpf);
 	
-	List<Cliente> findByNomeContaining(String nome);
+	List<Cliente> findByNomeStartingWith(String nome);
+	
+	
+	
 	
 
 }
