@@ -33,12 +33,6 @@ public class ExtratoBancario extends GenericEntity<Long>{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@Column(length = 4, nullable = false)
-	private String agenciaOrigem;
-	
-	@Column(length = 6, nullable = false)
-	private String numeroOrigem;
-	
 	@Column
 	@Enumerated(EnumType.STRING)
 	private ExtratoOperacoes tipoOperacao;
@@ -47,8 +41,12 @@ public class ExtratoBancario extends GenericEntity<Long>{
 	private double valorOperacao;
 	
 	@ManyToOne
-	@JoinColumn(name = "fk_conta_id")
-	private ContaBancaria contaBancaria;
+	@JoinColumn(name = "fk_contaOrigem_id")
+	private ContaBancaria contaOrigem;
+	
+	@ManyToOne
+	@JoinColumn(name = "fk_contaDestino_id")
+	private ContaBancaria contaDestino;
 	
 	@Column(nullable = false)
 	@DateTimeFormat(pattern = "dd/MM/yyyy HH:mm:ss")

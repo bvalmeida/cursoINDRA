@@ -23,9 +23,9 @@ public class ExtratoBancarioRest extends GenericCrudRest<ExtratoBancario, Long, 
 	@Autowired
 	private ExtratoService extratoService;
 	
-	@GetMapping(value = "/consultar-extratos/{agencia}/{numero}", produces = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody ResponseEntity<List<ExtratoBancarioDTO>> consultarExtrato(@PathVariable String agencia, String numero){
-		List<ExtratoBancarioDTO> listExtratoBancarioDTO = extratoService.obterExtratos(agencia, numero);
+	@GetMapping(value = "/consultar-extratos/{agencia}/{numero}/{dataInicio}/{dataFinal}", produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody ResponseEntity<List<ExtratoBancarioDTO>> consultarExtrato(@PathVariable String agencia, String numero, String dataInicio, String dataFinal){
+		List<ExtratoBancarioDTO> listExtratoBancarioDTO = extratoService.obterExtratos(agencia, numero, dataInicio, dataFinal);
 		
 		return new ResponseEntity<List<ExtratoBancarioDTO>>(listExtratoBancarioDTO, HttpStatus.OK);
 	}

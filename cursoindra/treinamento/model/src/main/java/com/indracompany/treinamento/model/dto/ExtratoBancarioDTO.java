@@ -19,7 +19,11 @@ public class ExtratoBancarioDTO implements Serializable {/**
 	
 	private String agenciaOrigem;
 	
+	private String agenciaDestino;
+	
 	private String numeroOrigem;
+	
+	private String numeroDestino;
 	
 	private double valorOperacao;
 	

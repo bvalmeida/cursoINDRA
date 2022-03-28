@@ -8,8 +8,6 @@ import com.indracompany.treinamento.model.entity.ExtratoBancario;
 
 public interface ExtratoBancarioRepository extends GenericCrudRepository<ExtratoBancario, Long> {
 	
-	List<ExtratoBancario> findByContaBancaria(ContaBancaria contaBancaria);
-	
-	List<ExtratoBancario> findByDateBetween(LocalDateTime dataInicio, LocalDateTime dataFinal);
+	List<ExtratoBancario> findByContaOrigemAndDateBetween(ContaBancaria contaBancaria, LocalDateTime dataInicio, LocalDateTime dataFinal);
 	
 }
