@@ -55,13 +55,16 @@ public class ExtratoService extends GenericCrudService<ExtratoBancario, Long, Ex
 			dtoExtrato.setAgenciaOrigem(extrato.getContaExtrato().getAgencia());
 			dtoExtrato.setNumeroOrigem(extrato.getContaExtrato().getNumero());
 			
-			if(extrato.getTipoOperacao() == ExtratoOperacoes.TRANSFERENCIA) {
-				
-				dtoExtrato.setAgenciaOrigem(extrato.getContaOrigem().getAgencia());
-				dtoExtrato.setNumeroOrigem(extrato.getContaOrigem().getNumero());
-				
-				dtoExtrato.setAgenciaDestino(extrato.getContaDestino().getAgencia());
-				dtoExtrato.setNumeroDestino(extrato.getContaDestino().getNumero());				
+			if(extrato.getTipoOperacao() == ExtratoOperacoes.TRANSFERENCIA_ENVIADA) {
+				dtoExtrato.setAgenciaDestino(extrato.getContaSecundaria().getAgencia());
+				dtoExtrato.setNumeroDestino(extrato.getContaSecundaria().getNumero());				
+			}
+			
+			if(extrato.getTipoOperacao() == ExtratoOperacoes.TRANSFERENCIA_RECEBIDA) {
+				dtoExtrato.setAgenciaOrigem(extrato.getContaSecundaria().getAgencia());
+				dtoExtrato.setNumeroOrigem(extrato.getContaSecundaria().getNumero());
+				dtoExtrato.setAgenciaDestino(extrato.getContaExtrato().getAgencia());
+				dtoExtrato.setNumeroDestino(extrato.getContaExtrato().getNumero());
 			}
 			
 			dtoExtrato.setDataTransacao(extrato.getDate());

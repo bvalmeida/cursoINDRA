@@ -132,10 +132,9 @@ public class ContaBancariaService extends GenericCrudService<ContaBancaria, Long
 		ExtratoBancario extratoBancarioContaSaque = new ExtratoBancario();
 		
 		extratoBancarioContaSaque.setContaExtrato(contaBancariaSaque);
-		extratoBancarioContaSaque.setContaOrigem(contaBancariaSaque);
-		extratoBancarioContaSaque.setContaDestino(contaBancariaDeposito);
+		extratoBancarioContaSaque.setContaSecundaria(contaBancariaDeposito);
 		extratoBancarioContaSaque.setDate(date);
-		extratoBancarioContaSaque.setTipoOperacao(ExtratoOperacoes.TRANSFERENCIA);
+		extratoBancarioContaSaque.setTipoOperacao(ExtratoOperacoes.TRANSFERENCIA_ENVIADA);
 		extratoBancarioContaSaque.setValorOperacao(dto.getValor());
 		
 		extratoService.salvarNoExtrato(extratoBancarioContaSaque);
@@ -143,10 +142,9 @@ public class ContaBancariaService extends GenericCrudService<ContaBancaria, Long
 		ExtratoBancario extratoBancarioContaDeposito = new ExtratoBancario();
 		
 		extratoBancarioContaDeposito.setContaExtrato(contaBancariaDeposito);
-		extratoBancarioContaDeposito.setContaOrigem(contaBancariaSaque);
-		extratoBancarioContaDeposito.setContaDestino(contaBancariaDeposito);
+		extratoBancarioContaDeposito.setContaSecundaria(contaBancariaSaque);
 		extratoBancarioContaDeposito.setDate(date);
-		extratoBancarioContaDeposito.setTipoOperacao(ExtratoOperacoes.TRANSFERENCIA);
+		extratoBancarioContaDeposito.setTipoOperacao(ExtratoOperacoes.TRANSFERENCIA_RECEBIDA);
 		extratoBancarioContaDeposito.setValorOperacao(dto.getValor());
 		
 		extratoService.salvarNoExtrato(extratoBancarioContaDeposito);

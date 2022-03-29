@@ -41,16 +41,12 @@ public class ExtratoBancario extends GenericEntity<Long>{
 	private double valorOperacao;
 	
 	@ManyToOne
-	@JoinColumn(name = "fk_contaExtrato_id")
+	@JoinColumn(name = "fk_conta_extrato_id")
 	private ContaBancaria contaExtrato;
 	
 	@ManyToOne
-	@JoinColumn(name = "fk_contaOrigem_id")
-	private ContaBancaria contaOrigem;
-	
-	@ManyToOne
-	@JoinColumn(name = "fk_contaDestino_id")
-	private ContaBancaria contaDestino;
+	@JoinColumn(name = "fk_conta_secundaria_id")
+	private ContaBancaria contaSecundaria;
 	
 	@Column(nullable = false)
 	@DateTimeFormat(pattern = "dd/MM/yyyy HH:mm:ss")
