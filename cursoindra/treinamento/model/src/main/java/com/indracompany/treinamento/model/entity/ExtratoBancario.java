@@ -41,6 +41,10 @@ public class ExtratoBancario extends GenericEntity<Long>{
 	private double valorOperacao;
 	
 	@ManyToOne
+	@JoinColumn(name = "fk_contaExtrato_id")
+	private ContaBancaria contaExtrato;
+	
+	@ManyToOne
 	@JoinColumn(name = "fk_contaOrigem_id")
 	private ContaBancaria contaOrigem;
 	

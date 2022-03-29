@@ -30,12 +30,15 @@ public class ExtratoService extends GenericCrudService<ExtratoBancario, Long, Ex
 		ContaBancaria contaBancaria = contaBancariaService.consultarConta(agencia, numero);
 		
 		DateTimeFormatter parser = DateTimeFormatter.ofPattern("dd/MM/uuuu");
+		  
+		LocalDateTime dateTimeInicio = LocalDate.parse(dataInicio,
+		parser).atStartOfDay();
+		  
+		LocalDateTime dateTimeFinal = LocalDate.parse(dataFinal,
+		parser).atTime(23, 59, 59);
+		 
 		
-		LocalDateTime dateTimeInicio = LocalDate.parse(dataInicio, parser).atStartOfDay();
-		
-		LocalDateTime dateTimeFinal = LocalDate.parse(dataFinal, parser).atStartOfDay();
-		
-		List<ExtratoBancario> extratoBancarioList = this.repository.findByContaOrigemAndDateBetween(contaBancaria, dateTimeInicio, dateTimeFinal);
+		List<ExtratoBancario> extratoBancarioList = this.repository.findByContaExtratoAndDateBetween(contaBancaria, dateTimeInicio, dateTimeFinal);
 
 		if (contaBancaria == null) {
 			throw new AplicacaoException(ExceptionValidacoes.ERRO_OBJETO_NAO_ENCONTRADO);
@@ -49,10 +52,14 @@ public class ExtratoService extends GenericCrudService<ExtratoBancario, Long, Ex
 
 			ExtratoBancarioDTO dtoExtrato = new ExtratoBancarioDTO();
 			
-			dtoExtrato.setAgenciaOrigem(extrato.getContaOrigem().getAgencia());
-			dtoExtrato.setNumeroOrigem(extrato.getContaOrigem().getNumero());
+			dtoExtrato.setAgenciaOrigem(extrato.getContaExtrato().getAgencia());
+			dtoExtrato.setNumeroOrigem(extrato.getContaExtrato().getNumero());
 			
 			if(extrato.getTipoOperacao() == ExtratoOperacoes.TRANSFERENCIA) {
+				
+				dtoExtrato.setAgenciaOrigem(extrato.getContaOrigem().getAgencia());
+				dtoExtrato.setNumeroOrigem(extrato.getContaOrigem().getNumero());
+				
 				dtoExtrato.setAgenciaDestino(extrato.getContaDestino().getAgencia());
 				dtoExtrato.setNumeroDestino(extrato.getContaDestino().getNumero());				
 			}
