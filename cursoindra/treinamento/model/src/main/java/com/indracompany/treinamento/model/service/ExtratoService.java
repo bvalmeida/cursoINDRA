@@ -57,7 +57,7 @@ public class ExtratoService extends GenericCrudService<ExtratoBancario, Long, Ex
 			
 			if(extrato.getTipoOperacao() == ExtratoOperacoes.TRANSFERENCIA_ENVIADA) {
 				dtoExtrato.setAgenciaDestino(extrato.getContaSecundaria().getAgencia());
-				dtoExtrato.setNumeroDestino(extrato.getContaSecundaria().getNumero());				
+				dtoExtrato.setNumeroDestino(extrato.getContaSecundaria().getNumero());	
 			}
 			
 			if(extrato.getTipoOperacao() == ExtratoOperacoes.TRANSFERENCIA_RECEBIDA) {

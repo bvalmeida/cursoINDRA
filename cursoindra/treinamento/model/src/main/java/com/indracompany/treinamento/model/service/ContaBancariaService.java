@@ -50,6 +50,7 @@ public class ContaBancariaService extends GenericCrudService<ContaBancaria, Long
 	
 	public double consultarSaldo(String agencia, String numero) {
 		ContaBancaria c = consultarConta(agencia, numero);
+		
 		return c.getSaldo();
 	}	
 	
@@ -122,7 +123,6 @@ public class ContaBancariaService extends GenericCrudService<ContaBancaria, Long
 		super.salvar(contaBancariaSaque);
 		
 		ContaBancaria contaBancariaDeposito = consultarConta(dto.getAgenciaDestino(), dto.getNumeroContaDestino());
-		
 		contaBancariaDeposito.setSaldo(contaBancariaDeposito.getSaldo() + dto.getValor());
 		
 		super.salvar(contaBancariaDeposito);
@@ -136,7 +136,6 @@ public class ContaBancariaService extends GenericCrudService<ContaBancaria, Long
 		extratoBancarioContaSaque.setDate(date);
 		extratoBancarioContaSaque.setTipoOperacao(ExtratoOperacoes.TRANSFERENCIA_ENVIADA);
 		extratoBancarioContaSaque.setValorOperacao(dto.getValor());
-		
 		extratoService.salvarNoExtrato(extratoBancarioContaSaque);
 		
 		ExtratoBancario extratoBancarioContaDeposito = new ExtratoBancario();
@@ -146,7 +145,6 @@ public class ContaBancariaService extends GenericCrudService<ContaBancaria, Long
 		extratoBancarioContaDeposito.setDate(date);
 		extratoBancarioContaDeposito.setTipoOperacao(ExtratoOperacoes.TRANSFERENCIA_RECEBIDA);
 		extratoBancarioContaDeposito.setValorOperacao(dto.getValor());
-		
 		extratoService.salvarNoExtrato(extratoBancarioContaDeposito);
 		
 	}
