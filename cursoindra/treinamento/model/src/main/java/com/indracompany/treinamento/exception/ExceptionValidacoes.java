@@ -30,6 +30,7 @@ public enum ExceptionValidacoes implements AplicacaoExceptionValidacoes {
   ERRO_CONTA_DUPLICADA("msg.erro.conta.duplicada", null, AplicacaoExceptionValidacoes.SEVERIDADE_ERRO),
   ERRO_CPF_JA_CADASTRADO("msg.erro.cpf.cadastrado", null, AplicacaoExceptionValidacoes.SEVERIDADE_ERRO),
   ERRO_EXTRATO_NAO_ENCONTRADO("msg.erro.extrato.nao.encontrado", null, AplicacaoExceptionValidacoes.SEVERIDADE_ERRO),
+  ERRO_VALOR_INVALIDO("msg.erro.valor.invalido", null, AplicacaoExceptionValidacoes.SEVERIDADE_ERRO),
 
   
 

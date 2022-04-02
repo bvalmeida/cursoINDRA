@@ -40,10 +40,6 @@ public class ExtratoService extends GenericCrudService<ExtratoBancario, Long, Ex
 		
 		List<ExtratoBancario> extratoBancarioList = this.repository.findByContaExtratoAndDateBetween(contaBancaria, dateTimeInicio, dateTimeFinal);
 
-		if (contaBancaria == null) {
-			throw new AplicacaoException(ExceptionValidacoes.ERRO_OBJETO_NAO_ENCONTRADO);
-		}
-
 		if (extratoBancarioList == null || extratoBancarioList.isEmpty()) {
 			throw new AplicacaoException(ExceptionValidacoes.ERRO_EXTRATO_NAO_ENCONTRADO);
 		}

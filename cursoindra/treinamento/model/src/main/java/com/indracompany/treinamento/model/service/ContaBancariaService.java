@@ -68,6 +68,10 @@ public class ContaBancariaService extends GenericCrudService<ContaBancaria, Long
 		
 		ContaBancaria contaBancaria = consultarConta(agencia, numero);
 		
+		if(valor <= 0) {
+			throw new AplicacaoException(ExceptionValidacoes.ERRO_VALOR_INVALIDO);
+		}
+		
 		contaBancaria.setSaldo(contaBancaria.getSaldo() + valor);
 		
 		LocalDateTime date = LocalDateTime.now();
@@ -87,6 +91,10 @@ public class ContaBancariaService extends GenericCrudService<ContaBancaria, Long
 	public void sacar(String agencia, String numero, double valor) {
 		
 		ContaBancaria contaBancaria = consultarConta(agencia, numero);
+		
+		if(valor <= 0) {
+			throw new AplicacaoException(ExceptionValidacoes.ERRO_VALOR_INVALIDO);
+		}
 		
 		if(contaBancaria.getSaldo() < valor) {
 			throw new AplicacaoException(ExceptionValidacoes.ERRO_SALDO_INEXISTENTE);
@@ -113,6 +121,10 @@ public class ContaBancariaService extends GenericCrudService<ContaBancaria, Long
 	public void transferir(TransferenciaBancariaDTO dto) {
 		
 		ContaBancaria contaBancariaSaque = consultarConta(dto.getAgenciaOrigem(), dto.getNumeroContaOrigem());
+		
+		if(dto.getValor() <= 0) {
+			throw new AplicacaoException(ExceptionValidacoes.ERRO_VALOR_INVALIDO);
+		}
 		
 		if(contaBancariaSaque.getSaldo() < dto.getValor()) {
 			throw new AplicacaoException(ExceptionValidacoes.ERRO_SALDO_INEXISTENTE);
