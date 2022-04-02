@@ -29,7 +29,7 @@ public class ExtratoService extends GenericCrudService<ExtratoBancario, Long, Ex
 
 		ContaBancaria contaBancaria = contaBancariaService.consultarConta(agencia, numero);
 		
-		DateTimeFormatter parser = DateTimeFormatter.ofPattern("dd/MM/uuuu");
+		DateTimeFormatter parser = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 		  
 		LocalDateTime dateTimeInicio = LocalDate.parse(dataInicio,
 		parser).atStartOfDay();
