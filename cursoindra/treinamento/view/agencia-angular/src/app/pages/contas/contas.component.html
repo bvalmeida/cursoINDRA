@@ -1,0 +1,22 @@
+<table class="table">
+  <thead>
+    <tr class="table table-striped">
+      <th scope="col">Id</th>
+      <th scope="col">Agência</th>
+      <th scope="col">Número</th>
+      <th scope="col">Saldo</th>
+      <th scope="col">Nome do Cliente</th>
+      <th scope="col">E-mail do Cliente</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let conta of contas">
+      <th scope="row">{{conta.id}}</th>
+      <td>{{conta.agencia}}</td>
+      <td>{{conta.numero}}</td>
+      <td>{{conta.saldo}}</td>
+      <td>{{conta.cliente.nome}}</td>
+      <td>{{conta.cliente.email}}</td>
+    </tr>
+  </tbody>
+</table>
