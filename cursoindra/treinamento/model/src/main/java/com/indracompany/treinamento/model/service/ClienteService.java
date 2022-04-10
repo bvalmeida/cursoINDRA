@@ -18,17 +18,45 @@ public class ClienteService extends GenericCrudService<Cliente, Long, ClienteRep
 	@Override
 	public Cliente salvar(Cliente cliente) throws AplicacaoException{
 		
-		Cliente c = buscarCliente(cliente.getCpf());
+//		Cliente c = buscarCliente(cliente.getCpf());
 		
-		if(c != null) {
-			if(cliente.getId() == null) {
-				throw new AplicacaoException(ExceptionValidacoes.ERRO_CPF_JA_CADASTRADO);
-		}
+//		if(c != null) {
+//			if(cliente.getId() == null) {
+//				throw new AplicacaoException(ExceptionValidacoes.ERRO_CPF_JA_CADASTRADO);
+//		}
 		
-			if(!cliente.getId().equals(cliente.getId())) {
-				throw new AplicacaoException(ExceptionValidacoes.ERRO_CPF_JA_CADASTRADO);
-			}
-		}
+//		if(!cliente.getId().equals(cliente.getId())) {
+//				throw new AplicacaoException(ExceptionValidacoes.ERRO_CPF_JA_CADASTRADO);
+//		}
+		
+//		public Cliente salvar(Cliente cli) throws AplicacaoException {
+//			   
+//			   if (cli.getId() != null) {
+//			      Cliente c = this.buscarCliente(cli.getCpf());
+//			      if (c != null) {
+//			         if (cli.getId() == null) {
+//			            throw new AplicacaoException(ExceptionValidacoes.ERRO_CPF_JA_CADASTRADO);
+//			         }
+//			         if (!cli.getId().equals(c.getId())) {
+//			            throw new AplicacaoException(ExceptionValidacoes.ERRO_CPF_JA_CADASTRADO);
+//			         }
+//			      }
+//			   }
+//			   
+//			   return super.salvar(cli);
+//			}
+		if (cliente.getId() != null) {
+			Cliente c = this.buscarCliente(cliente.getCpf());
+		      if (c != null) {
+		         if (cliente.getId() == null) {
+		            throw new AplicacaoException(ExceptionValidacoes.ERRO_CPF_JA_CADASTRADO);
+		         }
+		         if (!cliente.getId().equals(c.getId())) {
+		            throw new AplicacaoException(ExceptionValidacoes.ERRO_CPF_JA_CADASTRADO);
+		         }
+		      }
+		   }
+		
 		
 		return super.salvar(cliente);
 	}
@@ -43,9 +71,9 @@ public class ClienteService extends GenericCrudService<Cliente, Long, ClienteRep
 		
 		Cliente cliente = repository.findByCpf(cpf);
 		
-		if(cliente == null) {
-			throw new AplicacaoException(ExceptionValidacoes.ALERTA_NENHUM_REGISTRO_ENCONTRADO);
-		}
+//		if(cliente == null) {
+//			throw new AplicacaoException(ExceptionValidacoes.ALERTA_NENHUM_REGISTRO_ENCONTRADO);
+//		}
 		
 		return cliente;
 	}
