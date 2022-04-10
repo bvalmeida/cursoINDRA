@@ -11,6 +11,7 @@ import { ClientesCadastrarEditarComponent } from './pages/clientes/clientes-cada
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ContasCadastrarEditarComponent } from './pages/contas/contas-cadastrar-editar/contas-cadastrar-editar.component';
 import { DepositoComponent } from './pages/contas/deposito/deposito.component';
+import { IndrabankComponent } from './pages/indrabank/indrabank.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { DepositoComponent } from './pages/contas/deposito/deposito.component';
     ClientesCadastrarEditarComponent,
     ContasCadastrarEditarComponent,
     DepositoComponent,
+    IndrabankComponent,
   ],
   imports: [
     BrowserModule,
@@ -29,7 +31,7 @@ import { DepositoComponent } from './pages/contas/deposito/deposito.component';
     FormsModule,
     ReactiveFormsModule,
   ],
-  providers: [],
+  providers: [AppRoutingModule],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

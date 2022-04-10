@@ -5,8 +5,13 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ClientesComponent } from './pages/clientes/clientes.component';
 import { DepositoComponent } from './pages/contas/deposito/deposito.component';
+import { IndrabankComponent } from './pages/indrabank/indrabank.component';
 
 const routes: Routes = [
+  {
+    path: '',
+    component: IndrabankComponent,
+  },
   {
     path: 'clientes',
     component: ClientesComponent,
