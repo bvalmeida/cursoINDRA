@@ -1,3 +1,7 @@
+<div class="mt-2">
+  <a class="btn btn-dark" routerLink="cadastrar">Novo Cliente</a>
+</div>
+
 <table class="table table-secundary table-hover">
   <thead>
     <tr>
@@ -6,6 +10,7 @@
       <th scope="col">Cpf</th>
       <th scope="col">Email</th>
       <th scope="col">Observações</th>
+      <th>Ações</th>
     </tr>
   </thead>
   <tbody>
@@ -14,7 +19,16 @@
       <td>{{cliente.nome}}</td>
       <td>{{cliente.cpf}}</td>
       <td>{{cliente.email}}</td>
-      <td>{{cliente.observacao}}</td>
+      <td>{{cliente.observacoes}}</td>
+      <td>
+        <div class="dropdown">
+          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">Ações</button>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+            <li><a class="dropdown-item" [routerLink]="['editar', cliente.id]">Editar</a></li>
+            <li><a class="dropdown-item" (click)="confirmar(cliente.id)">Remover</a></li>
+          </ul>
+        </div>
+      </td>
     </tr>
   </tbody>
 </table>
