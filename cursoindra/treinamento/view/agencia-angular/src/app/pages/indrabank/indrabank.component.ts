@@ -12,6 +12,6 @@ export class IndrabankComponent implements OnInit {
   ngOnInit(): void {}
 
   entrar() {
-    this.router.navigate(['clientes']);
+    this.router.navigate(['/bank']);
   }
 }

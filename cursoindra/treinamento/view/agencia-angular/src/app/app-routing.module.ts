@@ -6,11 +6,21 @@ import { RouterModule, Routes } from '@angular/router';
 import { ClientesComponent } from './pages/clientes/clientes.component';
 import { DepositoComponent } from './pages/contas/deposito/deposito.component';
 import { IndrabankComponent } from './pages/indrabank/indrabank.component';
+import { HeaderComponent } from './components/header/header.component';
 
 const routes: Routes = [
   {
     path: '',
+    pathMatch: 'full',
+    redirectTo: 'home',
+  },
+  {
+    path: 'home',
     component: IndrabankComponent,
+  },
+  {
+    path: 'bank',
+    component: HeaderComponent,
   },
   {
     path: 'clientes',
