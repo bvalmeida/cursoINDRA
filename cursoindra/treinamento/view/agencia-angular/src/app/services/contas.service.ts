@@ -1,3 +1,4 @@
+import { IContaEdit } from './../interfaces/contas-edit';
 import { ITransferencia } from './../interfaces/transferencia';
 import { Observable } from 'rxjs';
 import { IDepositoSaque } from './../interfaces/deposito-saque';
@@ -23,7 +24,7 @@ export class ContasService {
     return this.http.get<IConta>(`${this.api}/${this.endpoint}/${id}`);
   }
 
-  cadastrarConta(conta: IConta) {
+  cadastrarConta(conta: IContaEdit) {
     return this.http.post(`${this.api}/${this.endpoint}/`, conta);
   }
 

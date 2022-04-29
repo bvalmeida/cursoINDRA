@@ -1,9 +1,11 @@
-<p>{{estaEditandoConta() ? 'Edição de':'Cadastro de'}} Contas</p>
-
-<form [formGroup]="formConta" (ngSubmit)="enviarConta()">
+<form [formGroup]="formConta" (ngSubmit)="enviar()">
   <div class="mb-3">
-    <label for="cliente" class="form-label">Digite o CPF do Cliente</label>
-    <input type="text" class="form-control" id="cliente" formControlName="cliente">
+    <label for="nome" class="form-label">Cliente</label>
+    <select *ngIf="!clientePorCPF" class="form-select" formControlName="idCliente">
+      <option value="null" hidden>Selecionar um cliente...</option>
+      <option *ngFor="let cliente of clientes" [value]="cliente.id">{{ cliente.nome }}</option>
+    </select>
+    <input *ngIf="clientePorCPF" class="form-control" disabled type="text" [value]="clientePorCPF?.nome">
   </div>
   <div class="mb-3">
     <label for="agencia" class="form-label">Agência</label>

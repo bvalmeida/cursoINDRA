@@ -1,17 +1,1 @@
-<p>Extrato</p>
 
-<form [formGroup]="formContaExtrato" (ngSubmit)="buscarExtrato()">
-  <div class="mb-3">
-    <label for="agencia" class="form-label">Agência</label>
-    <input type="text" class="form-control" id="agencia" formControlName="agencia">
-  </div>
-  <div class="mb-3">
-    <label for="numeroConta" class="form-label">Número</label>
-    <input type="text" class="form-control" id="numeroConta" formControlName="numeroConta">
-  </div>
-  <div class="mb-3">
-    <label for="valor" class="form-label">Valor</label>
-    <input type="text" class="form-control" id="valor" formControlName="valor">
-  </div>
-  <button [disabled]="!formContaExtrato.valid" type="submit" class="btn btn-dark">Enviar</button>
-</form>
