@@ -1,0 +1,25 @@
+<p>Transferência</p>
+
+<form [formGroup]="formContaTransferencia" (ngSubmit)="enviarTransferencia()">
+  <div class="mb-3">
+    <label for="agenciaOrigem" class="form-label">Agência Origem</label>
+    <input type="text" class="form-control" id="agenciaOrigem" formControlName="agenciaOrigem">
+  </div>
+  <div class="mb-3">
+    <label for="numeroContaOrigem" class="form-label">Número Origem</label>
+    <input type="text" class="form-control" id="numeroContaOrigem" formControlName="numeroContaOrigem">
+  </div>
+  <div class="mb-3">
+    <label for="agenciaDestino" class="form-label">Agência Destino</label>
+    <input type="text" class="form-control" id="agenciaDestino" formControlName="agenciaDestino">
+  </div>
+  <div class="mb-3">
+    <label for="numeroContaDestino" class="form-label">Número Destino</label>
+    <input type="text" class="form-control" id="numeroContaDestino" formControlName="numeroContaDestino">
+  </div>
+  <div class="mb-3">
+    <label for="valor" class="form-label">Valor</label>
+    <input type="text" class="form-control" id="valor" formControlName="valor">
+  </div>
+  <button [disabled]="!formContaTransferencia.valid" type="submit" class="btn btn-dark">Enviar</button>
+</form>

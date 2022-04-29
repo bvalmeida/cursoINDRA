@@ -1,4 +1,4 @@
-<p>Cadastrar Contas</p>
+<p>{{estaEditandoConta() ? 'Edição de':'Cadastro de'}} Contas</p>
 
 <form [formGroup]="formConta" (ngSubmit)="enviarConta()">
   <div class="mb-3">

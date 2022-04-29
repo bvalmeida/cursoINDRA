@@ -12,6 +12,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ContasCadastrarEditarComponent } from './pages/contas/contas-cadastrar-editar/contas-cadastrar-editar.component';
 import { DepositoComponent } from './pages/contas/deposito/deposito.component';
 import { IndrabankComponent } from './pages/indrabank/indrabank.component';
+import { SaqueComponent } from './pages/contas/saque/saque.component';
+import { TransferenciaComponent } from './pages/contas/transferencia/transferencia.component';
+import { ExtratoComponent } from './pages/contas/extrato/extrato.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +26,9 @@ import { IndrabankComponent } from './pages/indrabank/indrabank.component';
     ContasCadastrarEditarComponent,
     DepositoComponent,
     IndrabankComponent,
+    SaqueComponent,
+    TransferenciaComponent,
+    ExtratoComponent,
   ],
   imports: [
     BrowserModule,

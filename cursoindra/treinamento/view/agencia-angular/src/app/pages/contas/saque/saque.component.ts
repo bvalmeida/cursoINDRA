@@ -1,41 +1,41 @@
-import { IConta } from 'src/app/interfaces/conta';
 import { Router, ActivatedRoute } from '@angular/router';
-import Swal from 'sweetalert2';
 import { ContasService } from './../../../services/contas.service';
-import { IDepositoSaque } from './../../../interfaces/deposito-saque';
-import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { IConta } from 'src/app/interfaces/conta';
+import { IDepositoSaque } from 'src/app/interfaces/deposito-saque';
+import Swal from 'sweetalert2';
 
 @Component({
-  selector: 'app-deposito',
-  templateUrl: './deposito.component.html',
-  styleUrls: ['./deposito.component.css'],
+  selector: 'app-saque',
+  templateUrl: './saque.component.html',
+  styleUrls: ['./saque.component.css'],
 })
-export class DepositoComponent implements OnInit {
+export class SaqueComponent implements OnInit {
   constructor(
     private contaService: ContasService,
     private router: Router,
     private activatedRoute: ActivatedRoute
   ) {}
 
-  preencherFormDeposito(deposito: IConta): FormGroup {
+  preencherFormSaque(saque: IConta): FormGroup {
     return new FormGroup({
-      agencia: new FormControl(deposito.agencia),
-      numeroConta: new FormControl(deposito.numero),
+      agencia: new FormControl(saque.agencia),
+      numeroConta: new FormControl(saque.numero),
       valor: new FormControl(null),
     });
   }
 
-  formContaDeposito: FormGroup = new FormGroup({
+  formContaSaque: FormGroup = new FormGroup({
     agencia: new FormControl('', Validators.required),
     numeroConta: new FormControl('', Validators.required),
     valor: new FormControl(null, Validators.required),
   });
 
-  enviarDeposito() {
-    const deposito: IDepositoSaque = this.formContaDeposito.value;
-    this.contaService.depositar(deposito).subscribe((result) => {
-      Swal.fire('Sucesso!', 'Depósito realizado com sucesso!', 'success');
+  enviarSaque() {
+    const saque: IDepositoSaque = this.formContaSaque.value;
+    this.contaService.sacar(saque).subscribe((result) => {
+      Swal.fire('Sucesso!', 'Saque realizado com sucesso!', 'success');
       this.router.navigate(['/contas']);
       console.log(result);
     });
@@ -46,7 +46,7 @@ export class DepositoComponent implements OnInit {
     if (id) {
       this.contaService.buscarContaPorId(id).subscribe(
         (result: IConta) => {
-          this.formContaDeposito = this.preencherFormDeposito(result);
+          this.formContaSaque = this.preencherFormSaque(result);
         },
         (error) => console.log(error)
       );

@@ -11,6 +11,8 @@
       <th scope="col">Saldo</th>
       <th scope="col">Nome do Cliente</th>
       <th scope="col">E-mail do Cliente</th>
+      <th scope="col">Operações</th>
+      <th scope="col">Ações da Conta</th>
     </tr>
   </thead>
   <tbody>
@@ -22,12 +24,21 @@
       <td>{{conta.cliente.email}}</td>
       <td>
         <div class="dropdown">
-          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">Ações</button>
+          <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">Operações</button>
           <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
             <li><a class="dropdown-item" [routerLink]="['deposito', conta.id]">Deposito</a></li>
-            <li><a class="dropdown-item" [routerLink]="['deposito', conta.id]">Saque</a></li>
-            <li><a class="dropdown-item" [routerLink]="['deposito', conta.id]">Transferência</a></li>
+            <li><a class="dropdown-item" [routerLink]="['saque', conta.id]">Saque</a></li>
+            <li><a class="dropdown-item" [routerLink]="['transferencia', conta.id]">Transferência</a></li>
             <li><a class="dropdown-item" [routerLink]="['deposito', conta.id]">Extrato</a></li>
+          </ul>
+        </div>
+      </td>
+      <td>
+        <div class="dropdown">
+          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">Ações</button>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+            <li><a class="dropdown-item" [routerLink]="['editarConta', conta.id]">Editar</a></li>
+            <li><a class="dropdown-item" (click)="excluir(conta.id)">Remover</a></li>
           </ul>
         </div>
       </td>

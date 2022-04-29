@@ -1,3 +1,6 @@
+import { ExtratoComponent } from './pages/contas/extrato/extrato.component';
+import { TransferenciaComponent } from './pages/contas/transferencia/transferencia.component';
+import { SaqueComponent } from './pages/contas/saque/saque.component';
 import { ContasCadastrarEditarComponent } from './pages/contas/contas-cadastrar-editar/contas-cadastrar-editar.component';
 import { ClientesCadastrarEditarComponent } from './pages/clientes/clientes-cadastrar-editar/clientes-cadastrar-editar.component';
 import { ContasComponent } from './pages/contas/contas.component';
@@ -45,6 +48,22 @@ const routes: Routes = [
   {
     path: 'contas/deposito/:id',
     component: DepositoComponent,
+  },
+  {
+    path: 'contas/saque/:id',
+    component: SaqueComponent,
+  },
+  {
+    path: 'contas/transferencia/:id',
+    component: TransferenciaComponent,
+  },
+  {
+    path: 'contas/extrato/:id',
+    component: ExtratoComponent,
+  },
+  {
+    path: 'contas/editarConta/:id',
+    component: ContasCadastrarEditarComponent,
   },
 ];
 

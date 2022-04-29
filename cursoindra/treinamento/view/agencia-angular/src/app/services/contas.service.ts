@@ -1,6 +1,6 @@
+import { ITransferencia } from './../interfaces/transferencia';
 import { Observable } from 'rxjs';
 import { IDepositoSaque } from './../interfaces/deposito-saque';
-import { ICliente } from './../interfaces/cliente';
 import { HttpClient } from '@angular/common/http';
 import { environment } from './../../environments/environment';
 import { Injectable } from '@angular/core';
@@ -33,5 +33,16 @@ export class ContasService {
 
   depositar(deposito: IDepositoSaque) {
     return this.http.put(`${this.api}/${this.endpoint}/deposito/`, deposito);
+  }
+
+  sacar(saque: IDepositoSaque) {
+    return this.http.put(`${this.api}/${this.endpoint}/saque/`, saque);
+  }
+
+  transferir(transferencia: ITransferencia) {
+    return this.http.put(
+      `${this.api}/${this.endpoint}/transferencia/`,
+      transferencia
+    );
   }
 }
