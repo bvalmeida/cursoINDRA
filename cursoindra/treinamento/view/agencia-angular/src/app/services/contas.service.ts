@@ -28,6 +28,17 @@ export class ContasService {
     return this.http.post(`${this.api}/${this.endpoint}/`, conta);
   }
 
+  alterarConta(conta: IConta) {
+    return this.http.put(`${this.api}/${this.endpoint}/${conta.id}`, conta);
+  }
+
+  cadastrarEditarConta(conta: IContaEdit) {
+    if (conta.id) {
+      return this.http.put(`${this.api}/${this.endpoint}/${conta.id}`, conta);
+    }
+    return this.http.post(`${this.api}/${this.endpoint}/`, conta);
+  }
+
   remover(id: number) {
     return this.http.delete(`${this.api}/${this.endpoint}/${id}`);
   }

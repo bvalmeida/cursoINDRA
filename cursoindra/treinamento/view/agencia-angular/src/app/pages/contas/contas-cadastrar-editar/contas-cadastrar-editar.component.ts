@@ -34,6 +34,17 @@ export class ContasCadastrarEditarComponent implements OnInit {
 
   ngOnInit(): void {
     const cpf = this.activatedRoute.snapshot.paramMap.get('cpf');
+    const id = Number(this.activatedRoute.snapshot.paramMap.get('id'));
+
+    if (id) {
+      this.contaService.buscarContaPorId(id).subscribe(
+        (result: IContaEdit) => {
+          this.formConta = this.preencheFormGroup(result);
+        },
+        (error) => console.log(error)
+      );
+    }
+
     if (!cpf) {
       return this.buscaClientes();
     }
@@ -78,9 +89,17 @@ export class ContasCadastrarEditarComponent implements OnInit {
       saldo: this.formConta.get('saldo')?.value,
       cliente: { id: this.formConta.get('idCliente')?.value } as ICliente,
     };
-    this.contaService.cadastrarConta(conta).subscribe((result) => {
-      Swal.fire('Sucesso', `Conta cadastrada com sucesso!`, 'success');
+    this.contaService.cadastrarEditarConta(conta).subscribe((result) => {
+      Swal.fire(
+        'Sucesso',
+        `${this.estaEditandoConta() ? 'Editada' : 'Cadastrada'} com sucesso!`,
+        'success'
+      );
     });
     this.router.navigate(['/contas']);
+  }
+
+  estaEditandoConta() {
+    return !!this.formConta.get('id')?.value;
   }
 }
